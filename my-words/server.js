@@ -86,6 +86,13 @@ app.get("/about",(req,res)=>{
     });
 });
 
+app.get("/user/:id",(req,res)=>{
+    res.render("user.hbs",{
+        pageTitle:"あなたの名前",
+        content:"プロフィール",
+    });
+});
+
 app.get("/posts/:year/:month",(req,res)=>{
     res.send(`${req.params.year}年,${req.params.month}月の記事です。${req.query}`);
 });
