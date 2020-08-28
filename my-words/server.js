@@ -1,4 +1,15 @@
 const express = require("express");
+const mongoose = require('mongoose');
+const config = require('./config/dev.js');
+
+mongoose.connect(config.DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+});
+
+
 const app = express();
 const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
@@ -14,6 +25,7 @@ const courses = [
     {id:2,name:"course2"},
     {id:3,name:"course3"}
 ];
+
 //app.use(express.json());
 app.set("view engine","hbs");
 hbs.registerPartials(__dirname + "/views/partials");
@@ -100,3 +112,4 @@ app.get("/posts/:year/:month",(req,res)=>{
 app.listen(3000,()=>{
     console.log(`ポート番号${port}で立ち上がりました。`);
 });
+
